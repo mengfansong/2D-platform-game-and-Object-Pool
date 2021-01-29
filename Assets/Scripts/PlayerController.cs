@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     Collider2D coll;
     Animator animator;
 
+    public GameObject joyStick;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +34,15 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
+            jumpPressed = true;            
+        }
+    }
+
+    public void OnButtonJumpDown()
+    {
+        if (jumpCount > 0)
+        {
             jumpPressed = true;
-            
         }
     }
 
@@ -47,7 +56,11 @@ public class PlayerController : MonoBehaviour
 
     void GroundMovement()                       //奔跑
     {
-        float horizontalMove = Input.GetAxisRaw("Horizontal");       
+        float horizontalMove = Input.GetAxisRaw("Horizontal");
+        if (joyStick.GetComponent<FixedJoystick>().horizontal != 0)
+        {
+            horizontalMove = joyStick.GetComponent<FixedJoystick>().horizontal;
+        }       
         rb.velocity = new Vector2(horizontalMove * speed, rb.velocity.y);
 
         if (horizontalMove != 0)//进行转向操作。
