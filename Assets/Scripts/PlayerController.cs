@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask ground;
 
-    private bool isGround, isJump;
+    [SerializeField]
+    private bool isGround, isJump,isDashing;
 
     bool jumpPressed;
     int jumpCount=2;              //可跳跃次数
@@ -20,6 +22,19 @@ public class PlayerController : MonoBehaviour
     Animator animator;
 
     public GameObject joyStick;
+    [Header("冲刺技能UI组件")]
+    public Image dashImage;
+
+
+    [Header("冲刺技能的参数")]
+    public float dashTime;          //冲刺技能持续时间
+    private float dashTimeLeft;         //冲刺技能还剩多长时间完成
+    public float dashSpeed;         //冲刺时的速度
+    private float lastDash=-10f;             //上次使用冲刺的时刻，用以记录判断冲刺技能的CD  初始值为-10，确保游戏一开始就可以冲刺。
+    public float dashCoolDown;      //冲刺技能的冷却时长
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +51,59 @@ public class PlayerController : MonoBehaviour
         {
             jumpPressed = true;            
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            DoDash();
+        }
+
+        //技能冷却
+        dashImage.fillAmount -= 1.0f / dashCoolDown * Time.deltaTime;
+
     }
 
-    public void OnButtonJumpDown()
+    public void DoDash()                        //按下冲刺键
+    {
+        //判断是否可以冲刺的条件
+        if (Time.time >= lastDash + dashCoolDown)           //冲刺技能冷却完毕
+        {
+            //可以冲刺
+            ReadyToDash();
+        }
+    }
+
+    private void Dash()
+    {
+        if (isDashing)
+        {
+            if (dashTimeLeft > 0)
+            {
+                if (rb.velocity.y > 0 && !isGround)          //处于跳跃过程中按下了冲刺技能
+                {
+                    rb.gravityScale = 0;        //冲刺时暂停重力的作用
+                }
+                
+                rb.velocity = new Vector2(dashSpeed * transform.localScale.x, rb.velocity.y);           //给予冲刺速度
+                
+
+                
+                dashTimeLeft -= Time.deltaTime;     //剩余时长更新
+
+                ObjectPool.instance.GetFromPool();
+            }
+            if (dashTimeLeft <= 0)
+            {
+                isDashing = false;
+                rb.gravityScale = 3;        //冲刺结束恢复重力作用
+                //if (!isGround)              //冲刺结束后仍处于空中
+                //{
+                //    rb.velocity = new Vector2(dashSpeed * transform.localScale.x, jumpForce);
+                //}
+            }
+        }
+    }
+
+    public void OnButtonJumpDown()          //按下跳跃键
     {
         if (jumpCount > 0)
         {
@@ -49,9 +114,13 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate( )
     {
         isGround = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
+        animator.SetBool("IsGround", isGround);
+        Dash();
+        if (isDashing) { return; }          //冲刺中不允许进行其他操作。
         GroundMovement();
         SwitchAnim();
-        jump();
+        Jump();
+        
     }
 
     void GroundMovement()                       //奔跑
@@ -69,7 +138,7 @@ public class PlayerController : MonoBehaviour
         }       
     }
 
-    void jump()                     //跳跃
+    void Jump()                     //跳跃
     {
         Debug.Log("jump");
         if (isGround)           //站在地面上
@@ -106,5 +175,15 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Jumping", false);
             animator.SetBool("Falling", true);
         }
+    }
+
+    private void ReadyToDash()
+    {
+        isDashing = true;
+        dashTimeLeft = dashTime;            //冲刺时间计时
+
+        lastDash = Time.time;
+
+        dashImage.fillAmount = 1.0f;        //技能图标变成阴影
     }
 }
