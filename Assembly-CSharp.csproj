@@ -64,6 +64,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Inventory\InventoryScripts\Inventory.cs" />
+    <Compile Include="Assets\Inventory\InventoryScripts\Item.cs" />
+    <Compile Include="Assets\Inventory\InventoryScripts\ItemOnWorld.cs" />
+    <Compile Include="Assets\Inventory\InventoryScripts\Slot.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
@@ -74,6 +78,8 @@
     <Compile Include="Assets\Scripts\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ShadowSprite.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
+    <None Include="Assets\FreePixelFood\ReadMe.txt" />
     <None Include="Assets\Medieval_pixel_art_asset_FREE\pixel_snapping_README.txt" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/U3D/Unity/2019.4.17f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

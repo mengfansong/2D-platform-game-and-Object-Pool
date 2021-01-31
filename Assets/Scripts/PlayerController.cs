@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour
     private float lastDash=-10f;             //上次使用冲刺的时刻，用以记录判断冲刺技能的CD  初始值为-10，确保游戏一开始就可以冲刺。
     public float dashCoolDown;      //冲刺技能的冷却时长
 
+    [Header("玩家速度")]
+    public Vector2 currentVelocity;
+
+    
+
 
 
 
@@ -42,20 +47,24 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && jumpCount > 0)
+        if (Input.GetButtonDown("Jump") && jumpCount > 0)           //跳跃是空格键
         {
             jumpPressed = true;            
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))                                            //冲刺时K键
         {
             DoDash();
         }
+
+        currentVelocity = rb.velocity;
 
         //技能冷却
         dashImage.fillAmount -= 1.0f / dashCoolDown * Time.deltaTime;
@@ -114,6 +123,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate( )
     {
         isGround = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
+        if (rb.velocity.magnitude == 0)
+        {
+            isGround = true;
+        }
         animator.SetBool("IsGround", isGround);
         Dash();
         if (isDashing) { return; }          //冲刺中不允许进行其他操作。
@@ -140,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()                     //跳跃
     {
-        Debug.Log("jump");
+        //Debug.Log("jump");
         if (isGround)           //站在地面上
         {
             jumpCount = 2;
@@ -186,4 +199,6 @@ public class PlayerController : MonoBehaviour
 
         dashImage.fillAmount = 1.0f;        //技能图标变成阴影
     }
+
+    
 }
