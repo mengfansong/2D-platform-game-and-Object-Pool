@@ -1,15 +1,21 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BagOnDrag
     - FixedJoystick
+    - Inventory
+    - Item
+    - ItemOnDrag
+    - ItemOnWorld
     - ObjectPool
     - PlayerController
     - ShadowSprite
+    - Slot
+    - UIManager
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -23,10 +29,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -38,7 +42,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.Image
+    - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/SampleScene.unity:
@@ -75,25 +81,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11296}
     - Class: 114
-      Script: {instanceID: 11322}
+      Script: {instanceID: 11298}
     - Class: 114
-      Script: {instanceID: 11602}
+      Script: {instanceID: 11324}
     - Class: 114
-      Script: {instanceID: 11612}
+      Script: {instanceID: 11344}
     - Class: 114
-      Script: {instanceID: 12334}
+      Script: {instanceID: 11420}
     - Class: 114
-      Script: {instanceID: 13040}
+      Script: {instanceID: 11608}
     - Class: 114
-      Script: {instanceID: 13482}
+      Script: {instanceID: 11618}
     - Class: 114
-      Script: {instanceID: 13810}
+      Script: {instanceID: 11768}
     - Class: 114
-      Script: {instanceID: 14426}
+      Script: {instanceID: 11864}
     - Class: 114
-      Script: {instanceID: 17570}
+      Script: {instanceID: 12078}
     - Class: 114
-      Script: {instanceID: 17924}
+      Script: {instanceID: 12342}
+    - Class: 114
+      Script: {instanceID: 12424}
+    - Class: 114
+      Script: {instanceID: 12488}
+    - Class: 114
+      Script: {instanceID: 12712}
+    - Class: 114
+      Script: {instanceID: 13302}
+    - Class: 114
+      Script: {instanceID: 13496}
+    - Class: 114
+      Script: {instanceID: 13824}
+    - Class: 114
+      Script: {instanceID: 14440}
+    - Class: 114
+      Script: {instanceID: 14504}
+    - Class: 114
+      Script: {instanceID: 14524}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -112,6 +136,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    - Class: 225
+      Script: {instanceID: 0}
     - Class: 19719996
       Script: {instanceID: 0}
     - Class: 156049354
@@ -121,6 +147,12 @@ ScriptsOnlyBuild:
     - Class: 1839735485
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 5f1752ed2092162f016c19510c28a8b9
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
   - hash:
       serializedVersion: 2
       Hash: 89f9a1b4c64db9559e39f4a2e3bfaadd
@@ -141,6 +173,12 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
+      Hash: c5e52750448fccb756c677b7481ae7be
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIManager
+  - hash:
+      serializedVersion: 2
       Hash: c42672c997f8be6b1aa86a927ebea785
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -157,6 +195,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BagOnDrag
   - hash:
       serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
@@ -183,7 +227,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: 288dd6dc300d29031953a2c79071e03d
+      Hash: aaf2bcae86b19f38356ab401329d4c71
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -315,6 +359,12 @@ ScriptsOnlyBuild:
     className: PixelPerfectCamera
   - hash:
       serializedVersion: 2
+      Hash: d22b9eb2850740a1ff459a4b5c8943c7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ShadowSprite
+  - hash:
+      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -369,10 +419,22 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
+      Hash: 8df5a2a3f4a0768ca9e317b4f8b5b6aa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Item
+  - hash:
+      serializedVersion: 2
       Hash: 8dc90e648ac06f43bdd31ac9fa8f4579
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: bfc356b767584630616f08ebe5f8e7dc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemOnDrag
   - hash:
       serializedVersion: 2
       Hash: ce669872a2be11bc686ea22961d8a3bb
@@ -385,6 +447,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: f5542f3e54a14701cc4a32607c7afddb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Slot
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -417,12 +485,6 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 5f1752ed2092162f016c19510c28a8b9
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
-  - hash:
-      serializedVersion: 2
       Hash: f84d945e5e1ca985698660fc26e9657f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -433,6 +495,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 3f936d64469d37dfb7d88a5d7b05e823
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Inventory
   - hash:
       serializedVersion: 2
       Hash: 71b711096c6c32621c1d4c02310898b7
@@ -639,28 +707,28 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
+      Hash: b95b05d17df31b1db8d26f72e1b4b3b9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemOnWorld
+  - hash:
+      serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ToggleGroup
   - hash:
       serializedVersion: 2
-      Hash: c3d3430df9e3ea95e3e3d587961390fb
-    assemblyName: Unity.Timeline.dll
-    namespaceName: UnityEngine.Timeline
-    className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: d22b9eb2850740a1ff459a4b5c8943c7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ShadowSprite
-  - hash:
-      serializedVersion: 2
       Hash: 61087752d14acb3f24abc0f71a36d818
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ObjectPool
+  - hash:
+      serializedVersion: 2
+      Hash: c3d3430df9e3ea95e3e3d587961390fb
+    assemblyName: Unity.Timeline.dll
+    namespaceName: UnityEngine.Timeline
+    className: PlayableTrack
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

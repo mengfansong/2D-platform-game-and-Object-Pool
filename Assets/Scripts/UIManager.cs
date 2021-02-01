@@ -99,6 +99,8 @@ public class UIManager : MonoBehaviour                  //管理ui的显示以�
             //CreateNewItem(instance.myBag.itemList[i]);            //作废
             instance.slots.Add(Instantiate(instance.emptySlot));
             instance.slots[i].transform.SetParent(instance.slotGrid.transform,false);
+
+            instance.slots[i].GetComponent<Slot>().slotId = i;
             instance.slots[i].GetComponent<Slot>().SetupSlot(instance.myBag.itemList[i]);
 
         }

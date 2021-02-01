@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
+    public int slotId;
+
     public Item slotItem;
     public Image slotImage;
     public Text slotCount;

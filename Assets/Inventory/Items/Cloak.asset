@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cloak
   itemImage: {fileID: 21300000, guid: 6fc27c9d7fc2d9448af6851bf935e6d2, type: 3}
-  itemHeld: 1
+  itemHeld: 0
   itemInfo: "\u4E00\u4EF6\u9B54\u6CD5\u6597\u7BF7\uFF0C\u4F7F\u7528\u5B83\uFF0C\u4F60\u53EF\u4EE5\u8FDB\u884C\u4E8C\u6BB5\u8DF3\u3002\n"
   equip: 0
